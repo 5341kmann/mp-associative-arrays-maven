@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.DynamicContainer.dynamicContainer;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,36 +28,45 @@ public class TestsFromStudent {
     assertEquals(2, 1+1);
   } // alwaysPass()
 
-    /**
+  /**
    * Tests for case sensitivity.
    */
   @Test
   public void sackmannGrantTest1() throws Exception {
     AssociativeArray<String, String> aa = new AssociativeArray<String, String>();
+
     aa.set("Alvin", "Harris");
-    assertEquals(null, aa.get("alvin"));
-  }
+    try {
+      aa.get("alvin");
+      fail("Did not throw Exception");
+    } catch (Exception e) {
+      // Do nothing
+    }
+  } // sackmannGrantTest1()
 
   /**
    * Repeated key values in aa list.
    */
   @Test
-  public void sackmannGrantKeyFetchTest1() throws Exception {
+  public void sackmannGrantTest2() throws Exception {
     AssociativeArray<String, String> aa = new AssociativeArray<String, String>();
     aa.set("Alvin", "Harris");
-    aa.set("Alvin", "Tooler");
-    assertEquals("Tooler", aa.get("Alvin"));
-  }
+    aa.set("Alvin", "Aethylthryth");
+    assertEquals("Aethylthryth", aa.get("Alvin"));
+  } // sackmannGrantTest2()
 
   /**
-   * Checks for key of removed value.
+   * Removal from the middle of array
    */
   @Test
-  public void sackmannGrantRemovedKey() throws Exception {
+  public void sackmannGrantEdge() throws Exception {
     AssociativeArray<String, String> aa = new AssociativeArray<String, String>();
-    aa.set("Alvin", "Harris");
-    aa.remove("Alvin");
-
-    assertEquals(null, aa.get("alvin"));
-    }
+    aa.set("a","b");
+    aa.set("b","c");
+    aa.set("d","e");
+    aa.set("f","g");
+    aa.set("h","i");
+    aa.remove("d");
+    assertEquals("i", aa.get("h"));
+    } //  sackmannGrantEdge()
 } // class TestsFromSam
