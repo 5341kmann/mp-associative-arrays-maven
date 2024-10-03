@@ -24,5 +24,39 @@ public class TestsFromStudent {
    */
   @Test
   public void alwaysPass() throws Exception {
+    assertEquals(2, 1+1);
   } // alwaysPass()
+
+    /**
+   * Tests for case sensitivity.
+   */
+  @Test
+  public void sackmannGrantTest1() throws Exception {
+    AssociativeArray<String, String> aa = new AssociativeArray<String, String>();
+    aa.set("Alvin", "Harris");
+    assertEquals(null, aa.get("alvin"));
+  }
+
+  /**
+   * Repeated key values in aa list.
+   */
+  @Test
+  public void sackmannGrantKeyFetchTest1() throws Exception {
+    AssociativeArray<String, String> aa = new AssociativeArray<String, String>();
+    aa.set("Alvin", "Harris");
+    aa.set("Alvin", "Tooler");
+    assertEquals("Tooler", aa.get("Alvin"));
+  }
+
+  /**
+   * Checks for key of removed value.
+   */
+  @Test
+  public void sackmannGrantRemovedKey() throws Exception {
+    AssociativeArray<String, String> aa = new AssociativeArray<String, String>();
+    aa.set("Alvin", "Harris");
+    aa.remove("Alvin");
+
+    assertEquals(null, aa.get("alvin"));
+    }
 } // class TestsFromSam
